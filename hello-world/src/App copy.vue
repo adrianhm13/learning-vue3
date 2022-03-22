@@ -1,3 +1,6 @@
+// Basic Vue, bindings
+
+
 <template>
   <div>
     <p>{{ greet }} {{ name }}</p>
