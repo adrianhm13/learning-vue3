@@ -1,21 +1,25 @@
-// List Rendering in Vue
+// Methods & Event Handling 2
+
+// Use @ to substitute v-on:
+// It's possible to add more than one method to an event listener.
+// If only one method it's added without parameter, event it's injected
+// With more than one method, or parameter, you have to add manually $event as parameter
+
 
 <template>
   <div>
-    <h2 v-for="(name, index) in names" :key="name">{{ index }} {{ name }}</h2>
-    <h2 v-for="name in fullNames" :key="name.first">
-      {{ name.first }} {{ name.last }}
-    </h2>
-    <div v-for="actor in actors" :key="actor.name">
-      <h2>{{ actor.name }}</h2>
-      <h3 v-for="movie in actor.movies" :key="movie">{{ movie }}</h3>
-    </div>
-    <h2 v-for="(value, key, index) in myInfo" :key="value">
-      {{ index }} {{ key }} {{ value }}
-    </h2>
-    <div v-for="name in names" :key="name">
+    <div>
       <h2>{{ name }}</h2>
-      <hr/>
+      <button @click="changeName($event), increment(1, $event)">
+        Change Name
+      </button>
+    </div>
+    <div>
+      <h2>{{ count }}</h2>
+      <button @click="increment(1, $event)">Increment 1</button>
+      <button @click="decrement(1, $event)">Decrement 1</button>
+      <button @click="increment(5)">Increment 5</button>
+      <button @click="decrement(5)">Decrement 5</button>
     </div>
   </div>
 </template>
@@ -25,22 +29,22 @@ export default {
   name: "App",
   data() {
     return {
-      names: ["Adrian", "Laura", "Shiro"],
-      fullNames: [
-        { first: "Bruce", last: "Wayne" },
-        { first: "Clark", last: "Kent" },
-        { first: "Diana", last: "Unknown" },
-      ],
-      actors: [
-        { name: "Christian Bale", movies: ["Batman", "The Prestige"] },
-        { name: "Di Caprio", movies: ["Titanic", "Inception"] },
-      ],
-      myInfo: {
-        name: "Adrian",
-        lastName: "Hervas",
-        job: "Developer",
-      },
+      name: "Adrian",
+      count: 0,
     };
+  },
+  methods: {
+    changeName(event) {
+      this.name = "Batman";
+      console.log(event);
+    },
+    increment(num, event) {
+      console.log(event);
+      return (this.count += num);
+    },
+    decrement(num) {
+      return (this.count -= num);
+    },
   },
 };
 </script>
