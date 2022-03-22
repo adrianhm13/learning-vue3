@@ -1,1 +1,1 @@
-Repository to get the first glance to VUE JS 3
+Repository to get an introduction to VUE JS 3
