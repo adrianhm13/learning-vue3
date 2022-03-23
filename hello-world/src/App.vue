@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h2></h2>
+    <h2>Volume Tracker (0-20)</h2>
+    <h3>Current Volume - {{volume}}</h3>
+    <div>
+      <button @click="volume += 2">Increase Volume</button>
+      <button @click="volume -= 2">Decrease Volume</button>
+    </div>
   </div>
 </template>
 
@@ -9,7 +14,7 @@ export default {
   name: "App",
   data() {
     return {
-      
+      volume: 0
     };
   },
   methods: {
@@ -18,6 +23,15 @@ export default {
   computed: {
     
   },
+  watch: {
+    volume(newValue, oldValue) {
+      console.log('New Value', newValue)
+      console.log('Old Value', oldValue)
+      if(newValue > oldValue && newValue === 16){
+        alert('AAAAAAAAAAAAAAAAAAI')
+      }
+    }
+  }
 };
 </script>
 
