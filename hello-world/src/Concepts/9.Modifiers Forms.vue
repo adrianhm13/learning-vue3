@@ -1,18 +1,13 @@
-// Modifiers
-
-// v-model.trim="" cleaning spaces
-// v-model.number="" makes sure that the input it's a number
-// v-model.lazy="" it changes from input to change event, it's useful when validating or performance
-// @submit.prevent => event.preventDefault()
+// Forms Handling
 
 <template>
   <pre>
     {{ JSON.stringify(formValues, null, 2) }}
   </pre>
-  <form @submit.prevent="submitForm">
+  <form @submit="submitForm">
     <div>
       <label for="name">Name</label>
-      <input type="text" id="name" v-model.trim.lazy="formValues.name" />
+      <input type="text" id="name" v-model="formValues.name" />
     </div>
 
     <div>
@@ -130,7 +125,8 @@ export default {
     };
   },
   methods: {
-    submitForm() {
+    submitForm(event) {
+      event.preventDefault();
       console.log(this.formValues);
     },
   },
